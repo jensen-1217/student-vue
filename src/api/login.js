@@ -1,12 +1,11 @@
 import request from '@/utils/request'
 
 // 登录方法
-export function login(username, password, code, uuid) {
+export function login(username, password,  role) {
   const data = {
     username,
     password,
-    code,
-    uuid
+    role // 添加角色信息
   }
   return request({
     url: '/login',
@@ -18,6 +17,7 @@ export function login(username, password, code, uuid) {
     data: data
   })
 }
+
 
 // 注册方法
 export function register(data) {
@@ -47,14 +47,3 @@ export function logout() {
   })
 }
 
-// 获取验证码
-export function getCodeImg() {
-  return request({
-    url: '/captchaImage',
-    headers: {
-      isToken: false
-    },
-    method: 'get',
-    timeout: 20000
-  })
-}
